@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bombama Online</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Bombama Online</h1>
+
+    <div id="statusMessage" class="status-message">Connecting...</div>
+
+    <div id="timerContainer" class="ui-container">
+        Time: <span id="timerDisplay">--:--</span>
+    </div>
+
+    <div id="gameContainer" class="game-area">
+        <canvas id="gameCanvas"></canvas>
+        <div id="rightPanel" class="right-panel">
+            <div id="infoPanel" class="ui-container">
+                <div class="info-item">
+                    <canvas id="livesIconCanvas" class="info-icon"></canvas>
+                    <span id="livesValue">-</span>
+                </div>
+                <div class="info-item">
+                    <canvas id="bombsIconCanvas" class="info-icon"></canvas>
+                    <span id="bombsValue">-</span>
+                </div>
+            </div>
+            <div id="powerupLegendPanel" class="powerup-legend">
+                <h3>Power-ups</h3>
+                <!-- Itens preenchidos por JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Inicial -->
+    <div id="initialMenu" class="menu-overlay">
+        <h2>Main Menu</h2>
+        <div class="nickname-container">
+            <label for="nicknameInput">Nickname:</label>
+            <input type="text" id="nicknameInput" placeholder="Your Name" maxlength="15">
+        </div>
+        <div id="playerColorSelectorContainer">
+            <p>Your Color:</p>
+            <div id="playerColorOptions" class="color-options-grid">
+                <!-- Opções de cores preenchidas por JS -->
+            </div>
+        </div>
+        <button id="hostGameBtn">Start New Game</button>
+        
+        <p class="join-existing-text">Or join an existing game:</p>
+        <div class="join-input-container">
+             <input type="text" id="joinRoomInput" placeholder="Room ID (6 chars)" maxlength="6">
+             <button id="submitJoinBtn">Join</button>
+        </div>
+    </div>
+
+    <!-- Informações do Lobby -->
+    <div id="lobbyInfo" class="menu-overlay">
+        <h2>Lobby</h2>
+        <div class="room-id-container">
+            <p style="margin:0;">Room ID: <strong id="lobbyRoomId">------</strong></p>
+            <button id="copyRoomIdBtn">Copy ID</button>
+        </div>
+        <p>Players:</p>
+        <ul id="lobbyPlayerList">
+            <!-- Jogadores adicionados por JS -->
+        </ul>
+        <p id="waitingForHostText">Waiting for host to start the game...</p>
+        <button id="startGameBtn" style="display: none;">Start Game</button>
+        <button id="exitLobbyBtn" style="display: block;">Exit Lobby</button> <!-- NOVO BOTÃO -->
+    </div>
+
+    <!-- Overlay de Fim de Jogo -->
+    <div id="gameOverOverlay" class="menu-overlay">
+        <h2>Game Over</h2>
+        <p id="gameOverText">Player X Wins!</p>
+        <button id="returnToMenuBtn">Back to Main Menu</button>
+    </div>
+
+    <!-- Menu de Pausa -->
+    <div id="pauseMenuOverlay" class="menu-overlay">
+        <h2>Paused</h2>
+        <button id="resumeGameBtn">Resume Game</button>
+        <button id="pauseReturnToMenuBtn">Back to Main Menu</button>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

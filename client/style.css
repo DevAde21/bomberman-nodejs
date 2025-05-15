@@ -1,0 +1,464 @@
+/* client/style.css */
+
+/* Import constants for colors (Conceptual - CSS variables are better but require more setup) */
+/* We'll use the hex codes directly for simplicity here, matching ClientConstants.txt */
+
+body {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 20px;
+    box-sizing: border-box;
+    background-color: #282c34;
+    font-family: 'Jersey 15', sans-serif; /* ALTERADO: Nova fonte */
+    color: #e1e1e1;
+    overflow: hidden;
+    position: relative;
+    font-weight: normal; /* Garantir peso normal por padrão */
+    font-style: normal; /* Garantir estilo normal por padrão */
+}
+
+h1 {
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: normal; /* REMOVIDO: font-weight: 300; */
+    font-size: 2.5em; /* Ajuste o tamanho se necessário com a nova fonte */
+}
+
+/* Mensagens de Status/Erro (Topo) */
+.status-message {
+    display: none;
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(40, 44, 52, 0.8);
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 1.1em; /* Ajustado para a nova fonte */
+    z-index: 200;
+    text-align: center;
+    max-width: 85%;
+    border: 1px solid #4a5261;
+    font-weight: normal;
+}
+
+/* Container Geral de UI (Timer) */
+.ui-container {
+    display: none;
+    color: #e1e1e1;
+    font-size: 1.3em; /* Ajustado */
+    font-weight: normal; /* REMOVIDO: font-weight: bold; */
+    margin-bottom: 10px;
+}
+
+/* Área Principal do Jogo (Canvas + Info + Legend) */
+.game-area {
+    display: none;
+    position: relative;
+    margin-top: 15px;
+}
+
+/* Canvas do Jogo */
+canvas#gameCanvas {
+    display: block;
+    border: 2px solid #4a5261;
+    border-radius: 3px;
+}
+
+/* --- PAINEL LATERAL DIREITO (INFO + LEGENDA) --- */
+.right-panel {
+    width: 150px;
+    padding-top: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    margin-left: 15px;
+}
+
+
+/* Overlays de Menu (Base Styling) */
+.menu-overlay {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(58, 63, 75, 0.95);
+    padding: 20px 30px;
+    border-radius: 8px;
+    border: 1px solid #6c757d;
+    z-index: 100;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px; /* Aumentado ligeiramente para compensar a nova fonte */
+    min-width: 340px; /* Aumentado para acomodar melhor a fonte */
+    max-width: 90%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    color: #e1e1e1;
+    font-weight: normal;
+}
+
+.menu-overlay h2 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #ffffff;
+    text-align: center;
+    border-bottom: 1px solid #6c757d;
+    padding-bottom: 8px;
+    width: 100%;
+    font-size: 1.8em; /* Ajustado */
+    font-weight: normal; /* REMOVIDO: font-weight: 500; */
+}
+
+.menu-overlay p {
+    margin: 0;
+    text-align: center;
+    font-size: 1.1em; /* Ajustado */
+    font-weight: normal;
+}
+
+.menu-overlay button {
+    padding: 8px 16px;
+    font-size: 1.15em; /* Ajustado */
+    font-weight: normal; /* REMOVIDO: font-weight: 500; */
+    cursor: pointer;
+    background-color: #4a5261;
+    color: #ffffff;
+    border: 1px solid #7a8491;
+    border-radius: 5px;
+    min-width: 170px; /* Aumentado */
+    text-align: center;
+    transition: background-color 0.15s ease, transform 0.1s ease, border-color 0.15s ease;
+    margin-top: 0;
+    font-family: 'Jersey 15', sans-serif; /* Garantir que botões usem a fonte */
+}
+
+.menu-overlay button:first-of-type {
+    margin-top: 5px;
+}
+
+
+.menu-overlay button:hover {
+    background-color: #5e6878;
+    border-color: #9aa4b0;
+}
+
+.menu-overlay button:active {
+    transform: scale(0.97);
+    background-color: #555e6b;
+}
+
+
+/* Estilos específicos para o Menu Inicial */
+#initialMenu .nickname-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0;
+    width: 100%;
+    justify-content: center;
+}
+
+#initialMenu .nickname-container label {
+    font-size: 1.1em; /* Ajustado */
+    font-weight: normal; /* REMOVIDO: font-weight: 500; */
+}
+
+#initialMenu input#nicknameInput {
+    padding: 7px 9px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #333333;
+    font-size: 1.1em; /* Ajustado */
+    width: 160px; /* Aumentado */
+    font-family: 'Jersey 15', sans-serif;
+}
+
+/* --- Seletor de Cores no Menu Inicial --- */
+#initialMenu #playerColorSelectorContainer {
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
+    display: block;
+}
+#initialMenu #playerColorSelectorContainer p {
+    margin-bottom: 8px;
+    font-size: 1.05em; /* Ajustado */
+    font-weight: normal; /* REMOVIDO: font-weight: 500; */
+    text-align: center;
+}
+#initialMenu .color-options-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 6px;
+    max-width: 140px;
+    margin: 0 auto;
+    padding: 5px;
+    background-color: rgba(40, 44, 52, 0.3);
+    border-radius: 4px;
+}
+#initialMenu .color-option {
+    width: 28px;
+    height: 28px;
+    border: 2px solid #7a8491;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.1s ease, border-color 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+#initialMenu .color-option:hover {
+    border-color: #ffffff;
+    transform: scale(1.1);
+}
+#initialMenu .color-option.selected {
+    border-color: #f0c040;
+    border-width: 3px;
+    box-shadow: 0 0 8px rgba(240, 192, 64, 0.7);
+}
+#initialMenu .color-option.random-icon::after {
+    content: '?';
+    font-weight: normal; /* REMOVIDO: font-weight: bold; */
+    color: #ffffff;
+    font-size: 1.2em; /* Ajustado */
+}
+
+#initialMenu .join-existing-text {
+    font-size: 1.05em; /* Ajustado */
+    color: #b0b0b0;
+    margin-bottom: -2px; /* Ajustado para nova fonte */
+    font-style: normal; /* REMOVIDO: font-style: italic; */
+    font-weight: normal;
+}
+
+#initialMenu .join-input-container {
+    display: flex;
+    gap: 8px;
+    margin-top: 0;
+    margin-bottom: .3rem;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#initialMenu input[type="text"]#joinRoomInput {
+    padding: 7px 9px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #333333;
+    font-size: 1.1em; /* Ajustado */
+    width: 140px; /* Aumentado */
+    text-transform: lowercase;
+    text-align: center;
+    display: inline-block;
+    font-family: 'Jersey 15', sans-serif;
+}
+
+#initialMenu #submitJoinBtn {
+    min-width: auto;
+    padding: 7px 14px;
+    font-size: 1.1em; /* Ajustado */
+    display: inline-block;
+    margin-top: 0;
+}
+
+
+/* Estilos específicos para o Lobby */
+#lobbyInfo {
+    text-align: center;
+}
+.room-id-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 0;
+}
+#lobbyInfo #copyRoomIdBtn {
+    padding: 5px 10px;
+    font-size: 1em; /* Ajustado */
+    min-width: auto;
+    background-color: #5a68a0;
+    border-color: #8a98d0;
+    font-weight: normal;
+    margin-top: 0;
+}
+#lobbyInfo #copyRoomIdBtn:hover {
+    background-color: #7a88c0;
+}
+
+#lobbyInfo ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-height: 150px;
+    overflow-y: auto;
+    width: 90%;
+    border: 1px dashed #6c757d;
+    padding: 10px;
+    background-color: rgba(40, 44, 52, 0.4);
+    border-radius: 4px;
+}
+#lobbyInfo li {
+    padding: 5px 0;
+    font-weight: normal; /* REMOVIDO: font-weight: bold; */
+    font-size: 1.2em; /* Ajustado */
+}
+#lobbyInfo strong#lobbyRoomId {
+    color: #f0c040;
+    font-size: 1.1em; /* Herda do pai, pode ser ajustado se necessário */
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-weight: normal;
+}
+#waitingForHostText {
+     font-style: normal; /* REMOVIDO: font-style: italic; */
+     font-size: 1.05em; /* Ajustado */
+     color: #b0b0b0;
+     margin-top: 0;
+     display: none;
+     font-weight: normal;
+}
+#lobbyInfo button#startGameBtn {
+     background-color: #2ecc71;
+     border-color: #57d78d;
+     margin-top: 5px;
+     display: none;
+}
+#lobbyInfo button#startGameBtn:hover {
+     background-color: #40df85;
+}
+
+/* NOVO: Estilo para o botão Exit Lobby */
+#lobbyInfo button#exitLobbyBtn {
+    background-color: #e74c3c; /* Cor vermelha para saída */
+    border-color: #ec7063;
+}
+#lobbyInfo button#exitLobbyBtn:hover {
+    background-color: #f1948a;
+}
+
+
+/* Estilos específicos para Game Over */
+#gameOverOverlay {
+    text-align: center;
+}
+#gameOverOverlay #gameOverText {
+    font-size: 1.9em; /* Ajustado */
+    font-weight: normal; /* REMOVIDO: font-weight: bold; */
+    margin-bottom: 15px;
+    color: #e57373;
+}
+#gameOverOverlay button#returnToMenuBtn {
+     background-color: #81c784;
+     border-color: #a5d6a7;
+}
+ #gameOverOverlay button#returnToMenuBtn:hover {
+     background-color: #9ccc9f;
+ }
+
+/* Estilos para o Menu de Pausa */
+#pauseMenuOverlay button#resumeGameBtn {
+    background-color: #81c784;
+    border-color: #a5d6a7;
+    margin-top: 0;
+}
+#pauseMenuOverlay button#resumeGameBtn:hover {
+    background-color: #9ccc9f;
+}
+#pauseMenuOverlay button#pauseReturnToMenuBtn {
+    background-color: #e57373;
+    border-color: #ef9a9a;
+}
+#pauseMenuOverlay button#pauseReturnToMenuBtn:hover {
+    background-color: #f0aeae;
+}
+
+/* Painel de Informações (Vidas, Bombas) */
+#infoPanel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.2em; /* Ajustado */
+    font-weight: normal;
+}
+
+.info-icon {
+    width: 40px;
+    height: 40px;
+    display: block;
+}
+
+/* --- Painel de Legenda de Powerups --- */
+#powerupLegendPanel {
+    border: 1px solid #4a5261;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: rgba(58, 63, 75, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#powerupLegendPanel h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.1em; /* Ajustado */
+    color: #cccccc;
+    text-align: center;
+    font-weight: normal; /* REMOVIDO: font-weight: 500; */
+    border-bottom: 1px solid #4a5261;
+    padding-bottom: 4px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1em; /* Ajustado */
+    color: #d0d0d0;
+    font-weight: normal;
+}
+
+.legend-color-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+}
+
+/* Cores específicas para os pontos da legenda */
+.legend-color-dot.range { background-color: #ffd54f; }
+.legend-color-dot.count { background-color: #81c784; }
+.legend-color-dot.speed { background-color: #64b5f6; }
+.legend-color-dot.shield { background-color: #ba68c8; }
+.legend-color-dot.pierce { background-color: #ff8a65; }
+
+/* Ajuste global para inputs terem a nova fonte também */
+input, button, label, p, span, li, h1, h2, h3, div {
+    font-family: 'Jersey 15', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
