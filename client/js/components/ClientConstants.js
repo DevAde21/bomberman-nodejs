@@ -66,7 +66,7 @@ export const CONSTANTS = {
 
     ICON_CSS_SIZE: 40,
     ICON_RESOLUTION_MULTIPLIER: 2,
-    SERVER_ADDRESS: "ws://localhost:3000",
+    SERVER_ADDRESS: "wss://bomberman-backend.onrender.com",
     INPUT_SEND_INTERVAL: 1000 / 30,
     BOMB_PULSE_CLIENT_SIDE_SPEED: 0.1
 };
